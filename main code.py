@@ -6,7 +6,7 @@ import random
 def intro():
         img=p.imread("LOGO.png")
         res_img=p.resize(img,(1920,1080))
-        p.putText(res_img,"PRESS KEY TO START THE ENGINE :))))",(300,1000),p.FONT_HERSHEY_COMPLEX+p.FONT_ITALIC,2,(0,0,0),2,p.LINE_AA)
+        p.putText(res_img,"PRESS ANY KEY TO START THE ENGINE :))))",(300,1000),p.FONT_HERSHEY_COMPLEX+p.FONT_ITALIC,2,(0,0,0),2,p.LINE_AA)
         p.imshow("IMAGE WINDOW",res_img)
 
         p.waitKey(0)
