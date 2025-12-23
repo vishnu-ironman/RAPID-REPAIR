@@ -1,0 +1,24 @@
+CREATE DATABASE mechanic_service;
+
+USE mechanic_service;
+
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) UNIQUE,
+    password VARCHAR(20)
+);
+
+CREATE TABLE service_centers (
+    center_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    issue_type VARCHAR(50),
+    location VARCHAR(50)
+);
+
+-- Insert some sample service centers
+INSERT INTO service_centers (name, issue_type, location) VALUES
+('AutoFix Garage', 'Engine', 'SELAYUR'),
+('Speedy Repairs', 'Tyres', 'RAJAKILPAKKAM'),
+('CarCare Hub', 'Battery', 'VELACHERY'),
+('QuickMechanic', 'Brakes', 'MEDAVAKKAM'),
+('MotoAssist', 'Engine', 'CHEPAUK');
