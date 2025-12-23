@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Zen Timer • Focus & Flow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: linear-gradient(120deg, #343d53 0%, #6078ea 100%);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+    }
+    .timer {
+      font-size: 6rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+    }
+    .button {
+      background: #485071;
+      border: none;
+      color: #fff;
+      padding: 1rem 2.5rem;
+      font-size: 1.3rem;
+      margin: 0.5rem;
+      border-radius: 2.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .button:hover {
+      background: #6078ea;
+    }
+    .music-controls {
+      margin: 2rem 0 1rem 0;
+    }
+    audio {
+      width: 250px;
+      margin-top: 0.5rem;
+      outline: none;
+    }
+    .quote {
+      font-style: italic;
+      margin: 2rem auto 0 auto;
+      opacity: 0.8;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="timer" id="timer">25:00</div>
+  <div>
+    <button class="button" onclick="startTimer()">Start</button>
+    <button class="button" onclick="resetTimer()">Reset</button>
+    <button class="button" onclick="setTimer(25)">Pomodoro</button>
+    <button class="button" onclick="setTimer(5)">Short Break</button>
+    <button class="button" onclick="setTimer(15)">Long Break</button>
+  </div>
+  <div class="music-controls">
+    <label>🎵 Background Music</label><br>
+    <audio id="music" controls loop>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+      Your browser does not support audio.
+    </audio>
+  </div>
+  <div class="quote" id="quote"></div>
+  <script>
+    let time = 25 * 60, timerInt = null;
+    const timerElem = document.getElementById('timer');
+
+    function displayTime(secs) {
+      const m = String(Math.floor(secs / 60)).padStart(2, '0');
+      const s = String(secs % 60).padStart(2, '0');
+      timerElem.textContent = `${m}:${s}`;
+    }
+
+    function setTimer(mins) {
+      stopTimer();
+      time = mins * 60;
+      displayTime(time);
+    }
+
+    function startTimer() {
+      stopTimer();
+      timerInt = setInterval(() => {
+        if (time > 0) {
+          time--;
+          displayTime(time);
+        } else {
+          stopTimer();
+          timerElem.textContent = "Time's up!";
+          document.getElementById('music').pause();
+        }
+      }, 1000);
+      document.getElementById('music').play();
+    }
+
+    function stopTimer() {
+      if (timerInt) clearInterval(timerInt);
+    }
+    function resetTimer() {
+      stopTimer();
+      setTimer(25);
+    }
+    setTimer(25); // default
+
+    // Quotes
+    const quotes = [
+      "“The present moment is the only time over which we have dominion.” – Thích Nhất Hạnh",
+      "“Be like a tree and let the dead leaves drop.” – Rumi",
+      "“The quieter you become, the more you are able to hear.” – Rumi",
+      "“You cannot control the results, only your actions.” – Allan Lokos"
+    ];
+    document.getElementById('quote').textContent = quotes[Math.floor(Math.random()*quotes.length)];
+  </script>
+</body>
+</html>
