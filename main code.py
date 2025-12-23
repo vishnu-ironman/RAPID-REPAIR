@@ -14,7 +14,7 @@ p.imshow("IMAGE WINDOW",res_img)
  
 p.waitKey(0)
 p.destroyAllWindows()
-p.imwrite('res_img.png',res_img)
+p.imwrite('IMAGES/res_img.png',res_img)
 
 
 
@@ -38,10 +38,13 @@ def register_user():
                     print(i,end="")
                     time.sleep(0.002)
             print()
+            print()
             a="Enter Your name".center(200)
             name = input(a)
             time.sleep(2)
             b="Create a password:".center(200)
+            print()
+            star()
             password = input(b)
             try:
                 cursor.execute("INSERT INTO users (name, password) VALUES (%s, %s)", (name, password))
@@ -212,18 +215,18 @@ def eta(issue,cen):
         img=p.imread("IMAGES/mech.jpg")
         res_img=p.resize(img,(1720,980))
         p.putText(res_img,"------Mechanic Details -----",(100,100),p.FONT_HERSHEY_COMPLEX+p.FONT_ITALIC,2,(244, 234,255),2,p.LINE_AA)
-        namer="Mechanic Name         "+random.choice(a)
+        namer="Mechanic Name             "+random.choice(a)
         p.putText(res_img,namer,(100,300),p.FONT_HERSHEY_COMPLEX+p.FONT_ITALIC,2,(244, 234,255),2,p.LINE_AA)
-        pricer="Company name           "+str(cen)
+        pricer="Company name               "+str(cen)
         p.putText(res_img,pricer,(100,500),p.FONT_HERSHEY_COMPLEX+p.FONT_ITALIC,2,(244, 234,255),2,p.LINE_AA)
-        issuer="Phone no                    "+str(random.randint(9047562456,9923565786))
+        issuer="Phone no                     "+str(random.randint(9047562456,9923565786))
         p.putText(res_img,issuer,(100,700),p.FONT_HERSHEY_COMPLEX+p.FONT_ITALIC,2,(244, 234,255),2,p.LINE_AA)
         p.putText(res_img,"----PRESS ANY KEY TO PROCEED  -----",(100,900),p.FONT_HERSHEY_COMPLEX+p.FONT_ITALIC,2,(244, 234,255 ),2,p.LINE_AA)
         p.imshow("IMAGE WINDOW",res_img)
 
         p.waitKey(0)
         p.destroyAllWindows()
-        p.imwrite('resss.jpg',res_img)
+        p.imwrite('IMAGES/resss.jpg',res_img)
         
 
         maps=["IMAGES/map1.jpeg","IMAGES/map2.jpeg","IMAGES/map3.jpeg","IMAGES/map4.jpeg"]
@@ -235,7 +238,7 @@ def eta(issue,cen):
  
         p.waitKey(0)
         p.destroyAllWindows()
-        p.imwrite('resss_img.jpeg',res_img)
+        p.imwrite('IMAGES/resss_img.jpeg',res_img)
         payment(issue)
         
 def payment(issue):
@@ -280,7 +283,7 @@ def payment(issue):
 
         p.waitKey(0)
         p.destroyAllWindows()
-        p.imwrite('res.jpeg',res_img)
+        p.imwrite('IMAGES/res.jpeg',res_img)
         billing(issue,a)
 
 def login_user():
@@ -295,10 +298,16 @@ def login_user():
                     name = input(b)
                     print("..............".center(200))
                     time.sleep(2)
+                    print()
                     c="Enter Your Password".center(100)
                     password = input(c)
+                    print()
+                    star()
+                    print()
                     cursor.execute("SELECT * FROM users WHERE name=%s AND password=%s", (name, password))
                     user = cursor.fetchone()
+                    print()
+                    star()
                     if user:
                         print("\n"*3)
                         p=" Login successful!\n".center(200)
@@ -310,7 +319,7 @@ def login_user():
                                             Tyres
                                             Battery
                                             Brakes
-                                            '''.center(200)
+                                                                             '''.center(200)
                         issue = input(z)
                         get_service(issue)
                         a=1
@@ -377,8 +386,7 @@ elif choice == "yes":
 #end screen
 screenshift()
 for i in ("WE HOPE YOUR PROBLEM HAS BEEN RECTIFIED").center(200):
-            print()
-            print(i,end="")
+            print(i)
             
             time.sleep(0.03)
 print()
